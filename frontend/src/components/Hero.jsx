@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import heroImage from "../assets/hero.png";
 
 export default function Hero({ onContactClick }) {
   const words = ['Software Developer', 'Problem Solver', 'CSE Student', 'Learner'];
@@ -14,7 +15,7 @@ export default function Hero({ onContactClick }) {
     const handleTyping = () => {
       if (!isDeleting) {
         setCurrentText((prev) => activeWord.substring(0, prev.length + 1));
-        
+
         if (currentText === activeWord) {
           timer = setTimeout(() => setIsDeleting(true), 1500);
           return;
@@ -49,7 +50,7 @@ export default function Hero({ onContactClick }) {
           <span className="cursor-blink">|</span>
         </div>
         <p className="hero-desc">
-          I'm pursuing a B.E in Computer Science & Engineering at Shanmugha College of Engineering and Technology. 
+          I'm pursuing a B.E in Computer Science & Engineering at Shanmugha College of Engineering and Technology.
           I build accessible, animated, and premium web interfaces, with a deep interest in JavaScript, Python, Java, and database systems.
         </p>
 
@@ -84,7 +85,7 @@ export default function Hero({ onContactClick }) {
       <div className="hero-right">
         <div className="profile-halo"></div>
         <div className="profile-circle">
-          <img src="/Gokul!!!.jpeg" alt="Gokulnath Kesavan Profile" />
+          <img src={heroImage} alt="Gokulnath Kesavan Profile" />
         </div>
       </div>
     </section>
