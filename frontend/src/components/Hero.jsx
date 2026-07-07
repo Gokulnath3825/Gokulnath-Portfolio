@@ -85,7 +85,7 @@ export default function Hero({ onContactClick }) {
       <div className="hero-right">
         <div className="profile-halo"></div>
         <div className="profile-circle">
-          <img src={heroImage} alt="Gokulnath Kesavan Profile" />
+          <img src={heroImage} alt="Profile" />
         </div>
       </div>
     </section>
