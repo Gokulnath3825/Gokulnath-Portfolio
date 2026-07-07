@@ -22,7 +22,7 @@ export default function Navbar({ activeSection, onLinkClick, isDark, toggleTheme
             onLinkClick('home');
           }}
         >
-          <img src="/src/assets/favicon.jpeg" alt="Gokulnath Logo" />
+          <img src="assets/favicon.jpeg" alt="logo" />
           <span>Gokulnath</span>
         </a>
 
