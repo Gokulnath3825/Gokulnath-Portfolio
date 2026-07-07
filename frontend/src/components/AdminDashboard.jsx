@@ -61,7 +61,7 @@ export default function AdminDashboard({ onClose }) {
           ) : (
             <div>
               {error && <p className="status-error" style={{ marginBottom: '15px' }}>{error}</p>}
-              
+
               {messages.length === 0 ? (
                 <p style={{ textAlign: 'center', color: 'var(--text-muted)' }}>No messages received yet. Submit a message in the contact form!</p>
               ) : (

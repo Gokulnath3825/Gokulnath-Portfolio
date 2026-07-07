@@ -44,7 +44,7 @@ export default function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:5002/api/portfolio-data');
+        // const res = await fetch('http://localhost:5002/api/portfolio-data');
         if (res.ok) {
           const data = await res.json();
           setPortfolioData(data);
