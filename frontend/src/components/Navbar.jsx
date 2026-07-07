@@ -14,15 +14,15 @@ export default function Navbar({ activeSection, onLinkClick, isDark, toggleTheme
     <header className="header-nav">
       <div className="nav-wrap" role="navigation" aria-label="Main Navigation">
         {/* Brand Logo Link */}
-        <a 
-          href="#home" 
-          className="nav-logo" 
+        <a
+          href="#home"
+          className="nav-logo"
           onClick={(e) => {
             e.preventDefault();
             onLinkClick('home');
           }}
         >
-          <img src="/favicon.jpeg" alt="Gokulnath Logo" />
+          <img src="/src/assets/favicon.jpeg" alt="Gokulnath Logo" />
           <span>Gokulnath</span>
         </a>
 
