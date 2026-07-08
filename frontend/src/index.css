@@ -1359,11 +1359,19 @@ h6 {
 
 /* ================= RESPONSIVE DESIGN ================= */
 @media (max-width: 900px) {
+  .main-content {
+    padding: 80px 16px 40px 16px;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
   .hero-layout {
     grid-template-columns: 1fr;
-    gap: 50px;
+    gap: 24px;
     text-align: center;
-    padding-top: 40px;
+    padding-top: 20px;
     min-height: auto;
   }
 
@@ -1371,12 +1379,51 @@ h6 {
     align-items: center;
   }
 
+  .hero-greeting {
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+  }
+
+  .hero-title {
+    margin-bottom: 8px;
+  }
+
+  .hero-typing {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+  }
+
   .hero-desc {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
   .hero-cta {
+    justify-content: center;
+    margin-bottom: 15px;
+    gap: 12px;
+  }
+
+  .hero-cta .btn-primary {
+    padding: 11px 22px;
+    font-size: 0.95rem;
+  }
+
+  .hero-cta .btn-ghost {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+
+  .hero-meta {
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+  }
+
+  .hero-left .social-links {
     justify-content: center;
   }
 
@@ -1385,8 +1432,9 @@ h6 {
   }
 
   .profile-circle {
-    width: 250px;
-    height: 250px;
+    width: 180px;
+    height: 180px;
+    border-width: 3px;
   }
 
   .about-box {
