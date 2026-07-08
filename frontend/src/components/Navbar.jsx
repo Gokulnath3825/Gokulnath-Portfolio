@@ -1,4 +1,5 @@
 import React from 'react';
+import logoImg from '../assets/favicon.jpeg';
 
 export default function Navbar({ activeSection, onLinkClick, isDark, toggleTheme }) {
   const navLinks = [
@@ -22,7 +23,7 @@ export default function Navbar({ activeSection, onLinkClick, isDark, toggleTheme
             onLinkClick('home');
           }}
         >
-          <img src="assets/favicon.jpeg" alt="logo" />
+          <img src={logoImg} alt="logo" />
           <span>Gokulnath</span>
         </a>
 
