@@ -55,7 +55,7 @@ export default function Hero({ onContactClick }) {
         </p>
 
         <div className="hero-cta">
-          <a className="btn-primary" href="/resume.pdf" download="Gokulnath_Resume.pdf">
+          <a className="btn-primary" href={`${import.meta.env.BASE_URL}resume.pdf`} download="Gokulnath_Resume.pdf">
             Download CV 📥
           </a>
           <button className="btn-ghost" onClick={onContactClick}>
