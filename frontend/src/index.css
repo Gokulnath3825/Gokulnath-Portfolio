@@ -66,14 +66,14 @@
 
 .dark-theme {
 
-  --bg-primary: #050816;
-  --bg-secondary: #0b1220;
+  --bg-primary: #121824;
+  --bg-secondary: #1b2336;
 
   --bg-gradient:
     radial-gradient(circle at top left,
-      #0c4a6e 0%,
-      #050816 45%,
-      #020617 100%);
+      #1e2e4a 0%,
+      #121824 50%,
+      #0b0f17 100%);
   /* Glass Cards */
   --card-bg: rgba(15, 23, 42, 0.65);
   --card-border: rgba(56, 189, 248, 0.25);
@@ -119,6 +119,7 @@ html {
 
 body {
   min-height: 100vh;
+  background: var(--bg-gradient);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'Outfit', sans-serif;
