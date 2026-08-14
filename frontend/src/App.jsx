@@ -67,7 +67,7 @@ const FALLBACK_DATA = {
 };
 
 export default function App() {
-  const [showWelcome, setShowWelcome] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isDark, setIsDark] = useState(true);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
