@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import heroImage from "../assets/hero.png";
 
 export default function Hero({ onContactClick }) {
-  const words = ['Software Developer', 'Problem Solver', 'CSE Student', 'Learner'];
+  const words = ['Full-Stack & AI Enthusiast', 'CSE Undergrad @ Shanmugha', 'Python & React Developer', 'Problem Solver'];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const [typingSpeed, setTypingSpeed] = useState(120);
 
   useEffect(() => {
     let timer;
@@ -17,7 +17,7 @@ export default function Hero({ onContactClick }) {
         setCurrentText((prev) => activeWord.substring(0, prev.length + 1));
 
         if (currentText === activeWord) {
-          timer = setTimeout(() => setIsDeleting(true), 1500);
+          timer = setTimeout(() => setIsDeleting(true), 1800);
           return;
         }
       } else {
@@ -26,12 +26,12 @@ export default function Hero({ onContactClick }) {
         if (currentText === '') {
           setIsDeleting(false);
           setCurrentWordIndex((prev) => (prev + 1) % words.length);
-          setTypingSpeed(150);
+          setTypingSpeed(120);
           return;
         }
       }
 
-      setTypingSpeed(isDeleting ? 60 : 120);
+      setTypingSpeed(isDeleting ? 50 : 100);
     };
 
     timer = setTimeout(handleTyping, typingSpeed);
@@ -41,51 +41,82 @@ export default function Hero({ onContactClick }) {
   return (
     <section id="home" className="section hero-layout" aria-label="Home Section">
       <div className="hero-left">
-        <div className="hero-greeting">Hi There, I'm</div>
+        {/* Availability Badge */}
+        <div className="hero-status-pill">
+          <span className="status-dot"></span>
+          <span>Open for Internships & AI/Web Projects</span>
+        </div>
+
         <h1 className="hero-title">
-          <span>Gokulnath</span>
+          Hi, I'm <span className="gradient-text">Gokulnath</span>
         </h1>
+
         <div className="hero-typing">
-          <span>{currentText}</span>
+          <span className="typing-text">{currentText}</span>
           <span className="cursor-blink">|</span>
         </div>
+
         <p className="hero-desc">
-          I'm pursuing a B.E in Computer Science & Engineering at Shanmugha College of Engineering and Technology.
-          I build accessible, animated, and premium web interfaces, with a deep interest in JavaScript, Python, Java, and database systems.
+          3rd-Year Computer Science Student crafting modern, performant, and intelligent web software. 
+          Specialized in <strong>Python</strong>, <strong>JavaScript</strong>, <strong>Java</strong>, and <strong>AI/NLP solutions</strong> like my AI Resume Analyzer.
         </p>
 
         <div className="hero-cta">
-          <a className="btn-primary" href={`${import.meta.env.BASE_URL}resume.pdf`} download="Gokulnath_Resume.pdf">
-            Download CV 📥
+          <a
+            className="btn-primary"
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Explore Projects
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2.5" fill="none">
+              <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </a>
+
           <button className="btn-ghost" onClick={onContactClick}>
-            Contact Me
+            Get In Touch
           </button>
         </div>
 
         <div className="hero-meta">
-          <span>Based in: <strong>Bhavani, Tamil Nadu</strong></span>
-          <span>•</span>
-          <span>Available: <strong>Now</strong></span>
+          <span>📍 <strong>Bhavani, Tamil Nadu, India</strong></span>
+          <span className="dot-divider">•</span>
+          <span>🎓 <strong>Shanmugha College of Engineering</strong></span>
         </div>
 
         <div className="social-links">
-          <a href="mailto:gokulj172@gmail.com" className="social-btn" title="Email" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="social-svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <a href="https://github.com/Gokulnath3825" className="social-btn" title="GitHub Profile" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
           </a>
-          <a href="https://github.com/Gokulnath3825" className="social-btn" title="GitHub" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="social-svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <a href="https://www.linkedin.com/in/gokulnath-kesavan-9780a3282" className="social-btn" title="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
           </a>
-          <a href="https://www.linkedin.com/in/gokulnath-kesavan-9780a3282" className="social-btn" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="social-svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <a href="mailto:gokulj172@gmail.com" className="social-btn" title="Email Gokulnath" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+          <a href="https://www.hackerrank.com/profile/e23cs032" className="social-btn" title="HackerRank Profile" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><line x1="14" y1="4" x2="10" y2="20"></line></svg>
           </a>
         </div>
       </div>
 
       <div className="hero-right">
-        <div className="profile-halo"></div>
-        <div className="profile-circle">
-          <img src={heroImage} alt="Gokulnath Kesavan Profile" />
+        <div className="profile-wrapper">
+          <div className="profile-glow-ring"></div>
+          <div className="profile-card">
+            <img src={heroImage} alt="Gokulnath - CSE Undergrad & Developer" />
+          </div>
+          <div className="hero-floating-badge badge-top">
+            <span className="badge-icon">⚡</span>
+            <span>Full-Stack & AI</span>
+          </div>
+          <div className="hero-floating-badge badge-bottom">
+            <span className="badge-icon">💻</span>
+            <span>3rd Year CSE</span>
+          </div>
         </div>
       </div>
     </section>

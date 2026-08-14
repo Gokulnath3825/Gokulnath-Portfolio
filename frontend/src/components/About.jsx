@@ -1,32 +1,60 @@
 import React from 'react';
 
 export default function About() {
+  const highlights = [
+    { label: 'Academic Standing', value: '3rd Year CSE' },
+    { label: 'Institution', value: 'Shanmugha CSE' },
+    { label: 'Core Focus', value: 'AI & Web Engineering' },
+    { label: 'Problem Solving', value: 'HackerRank & DSA' }
+  ];
+
   return (
     <section id="about" className="section">
       <h2 className="section-title">About Me</h2>
-      <p className="section-subtitle">Get to know my journey, academic details, and values</p>
-      
-      <div className="about-box">
-        <div className="about-text">
-          <p>
-            I am currently pursuing my Bachelor’s degree in Computer Science and Engineering at Shanmugha College of Engineering and Technology, Pullipalayam, Salem. As a passionate and curious learner, I thrive at the intersection of creativity and technology, where I enjoy transforming ideas into intelligent, user-focused digital experiences.
+      <p className="section-subtitle">Passionate 3rd-year CSE student building the future with code and AI</p>
+
+      <div className="about-grid">
+        <div className="about-card-main">
+          <p className="about-lead">
+            I am currently pursuing my <strong>Bachelor’s degree in Computer Science and Engineering</strong> at 
+            <em> Shanmugha College of Engineering and Technology</em> (Batch 2023-2027).
           </p>
           <p>
-            Throughout my academic journey, I have developed strong foundations in modern web development, programming, algorithms, and data-driven problem solving. I am deeply interested in building solutions that are not only functional but also intuitive, responsive, and impactful in real-world scenarios.
+            Driven by curiosity, I enjoy bridging software engineering fundamentals with modern web development 
+            and artificial intelligence. From developing an <strong>AI Resume Analyzer</strong> using Python and NLP 
+            to crafting high-performance full-stack applications with React, Express, and MySQL, I strive to build 
+            clean, intuitive, and impactful digital products.
           </p>
           <p>
-            I’m continuously exploring new technologies, refining my skills, and challenging myself to build smarter and more meaningful digital products. With a vision to grow as a versatile engineer, I aim to solve real-world problems and create solutions that enhance user experiences.
+            When I'm not coding, I'm exploring new frameworks, practicing data structures and algorithms, 
+            and enhancing my technical stack to stay at the cutting edge of modern software development.
           </p>
-          <div className="about-contact-bar">
-            <span>Email: <strong>gokulj172@gmail.com</strong></span>
-            <span>Phone: <strong>+91 73970 39114</strong></span>
+
+          <div className="about-details-row">
+            <div className="detail-item">
+              <span className="detail-label">Location</span>
+              <span className="detail-val">Bhavani, Erode, Tamil Nadu</span>
+            </div>
+            <div className="detail-item">
+              <span className="detail-label">Degree</span>
+              <span className="detail-val">B.E. Computer Science & Eng.</span>
+            </div>
+            <div className="detail-item">
+              <span className="detail-label">Email</span>
+              <span className="detail-val">
+                <a href="mailto:gokulj172@gmail.com">gokulj172@gmail.com</a>
+              </span>
+            </div>
           </div>
         </div>
 
-        <div className="about-badge">
-          <a href="https://www.hackerrank.com/profile/e23cs032" target="_blank" rel="noopener noreferrer" className="about-icon-box" title="HackerRank Profile">
-            <svg viewBox="0 0 24 24" width="70" height="70" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="about-svg"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><line x1="14" y1="4" x2="10" y2="20"></line></svg>
-          </a>
+        <div className="about-stats-column">
+          {highlights.map((item, idx) => (
+            <div key={idx} className="stat-pill-card">
+              <div className="stat-value">{item.value}</div>
+              <div className="stat-label">{item.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

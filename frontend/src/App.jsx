@@ -12,23 +12,57 @@ import BackgroundCanvas from './components/BackgroundCanvas';
 
 const FALLBACK_DATA = {
   skills: [
-    { id: 1, name: 'JavaScript', percentage: 50, details: 'ES6, DOM, Fetch API, small projects' },
-    { id: 2, name: 'Java', percentage: 80, details: 'Core Java, OOP, small console & GUI apps' },
-    { id: 3, name: 'Python', percentage: 50, details: 'Scripting, small Flask prototypes, data parsing' },
-    { id: 4, name: 'HTML', percentage: 95, details: 'Semantic HTML, accessibility basics' },
-    { id: 5, name: 'CSS', percentage: 90, details: 'Layouts, Flexbox, Grid, animations' },
-    { id: 6, name: 'C Programming', percentage: 75, details: 'Foundations, pointers, arrays' },
-    { id: 7, name: 'MySQL', percentage: 60, details: 'Basic queries, relational design' },
-    { id: 8, name: 'DSA (Basics)', percentage: 55, details: 'Arrays, linked lists, searching & sorting' }
+    { id: 1, name: 'Python', percentage: 85, category: 'Languages', details: 'Scripting, Flask prototypes, NLP & AI tools, Data processing' },
+    { id: 2, name: 'JavaScript (ES6+)', percentage: 85, category: 'Languages', details: 'Modern JS, DOM manipulation, Async/Await, Fetch API, React' },
+    { id: 3, name: 'Java', percentage: 80, category: 'Languages', details: 'Core Java, OOP principles, Console & GUI desktop software' },
+    { id: 4, name: 'HTML5', percentage: 95, category: 'Frontend', details: 'Semantic HTML, Accessibility (a11y), SEO tags' },
+    { id: 5, name: 'CSS3 / Tailwind', percentage: 90, category: 'Frontend', details: 'Flexbox, Grid, Animations, Dark mode, Custom design systems' },
+    { id: 6, name: 'React', percentage: 80, category: 'Frontend', details: 'Hooks, State management, Component architecture, Vite' },
+    { id: 7, name: 'C Programming', percentage: 75, category: 'Languages', details: 'Foundations, Pointers, Data structures' },
+    { id: 8, name: 'MySQL', percentage: 70, category: 'Backend & DB', details: 'Relational DB design, Complex queries, JDBC/Node integration' },
+    { id: 9, name: 'DSA & Algorithms', percentage: 65, category: 'Fundamentals', details: 'Arrays, Linked lists, Trees, Searching & Sorting algorithms' }
   ],
   projects: [
-    { id: 1, title: 'Personal Portfolio', description: 'Animated full-stack portfolio built with React, Node.js, Express, and MySQL.', tags: 'React, Node, MySQL, CSS' },
-    { id: 2, title: 'Student Management App', description: 'CRUD application developed using Java and MySQL with console/web interfaces.', tags: 'Java, MySQL, JDBC' },
-    { id: 3, title: 'PDF Summarizer', description: 'A Flask web application that summarizes key sentences from uploaded PDF documents.', tags: 'Python, Flask, NLP, API' }
+    {
+      id: 1,
+      title: 'AI Resume Analyzer',
+      description: 'Intelligent AI-powered resume parser and analyzer that scores candidate resumes, extracts key skills, and provides real-time improvement feedback against job descriptions.',
+      tags: 'Python, Flask, NLP, AI/ML, JavaScript, CSS3',
+      githubUrl: 'https://github.com/Gokulnath3825',
+      liveUrl: 'https://gokulnath3825.github.io/Gokulnath-Portfolio/',
+      featured: true
+    },
+    {
+      id: 2,
+      title: 'Personal Portfolio Website',
+      description: 'Sleek, responsive dark-themed developer portfolio featuring large bold typography, scroll animations, micro-interactions, and full-stack integration.',
+      tags: 'React, Vite, CSS3, Express, MySQL',
+      githubUrl: 'https://github.com/Gokulnath3825/Gokulnath-Portfolio',
+      liveUrl: 'https://gokulnath3825.github.io/Gokulnath-Portfolio/',
+      featured: true
+    },
+    {
+      id: 3,
+      title: 'PDF Summarizer & Key Point Extractor',
+      description: 'Flask web service that extracts text from multi-page PDF documents and automatically highlights key summary points using natural language processing techniques.',
+      tags: 'Python, Flask, NLP, PyPDF2, HTML5',
+      githubUrl: 'https://github.com/Gokulnath3825',
+      liveUrl: '',
+      featured: false
+    },
+    {
+      id: 4,
+      title: 'Student Management System',
+      description: 'Full-featured CRUD application built with Core Java and MySQL to manage student records, grades, and department enrollments.',
+      tags: 'Java, MySQL, JDBC, OOP',
+      githubUrl: 'https://github.com/Gokulnath3825',
+      liveUrl: '',
+      featured: false
+    }
   ],
   education: [
-    { id: 1, degree: 'B.E Computer Science Engineering', institution: 'Shanmugha College of Engineering & Technology', duration: '2026 - Present', details: 'Batch 2023-27 • Regulation 2023' },
-    { id: 2, degree: 'HSC & SSLC', institution: 'Govt Boys Higher Secondary School', duration: 'PassOut on 2023', details: 'Focus on general science and mathematics' }
+    { id: 1, degree: 'B.E Computer Science & Engineering', institution: 'Shanmugha College of Engineering & Technology', duration: '2023 - 2027 (3rd Year)', details: 'Current GPA: Pursuing • Regulation 2023 • Focus on Data Structures, Web Engineering & AI' },
+    { id: 2, degree: 'HSC & SSLC (School Education)', institution: 'Govt Boys Higher Secondary School', duration: 'Completed 2023', details: 'Passed with high distinction in Mathematics and Computer Science' }
   ]
 };
 
@@ -71,21 +105,38 @@ export default function App() {
     }
   }, [isDark]);
 
-  // Scroll detection to highlight the active section in navigation bar
+  // Scroll detection to highlight active nav link and trigger reveal animations
   useEffect(() => {
     if (showWelcome) return;
 
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+        }
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const sections = document.querySelectorAll('.section');
+    sections.forEach((section) => observer.observe(section));
+
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'education', 'contact'];
+      const sectionIds = ['home', 'about', 'skills', 'projects', 'education', 'contact'];
       const scrollPos = window.scrollY + 250;
 
-      for (const section of sections) {
-        const el = document.getElementById(section);
+      for (const sectionId of sectionIds) {
+        const el = document.getElementById(sectionId);
         if (el) {
           const top = el.offsetTop;
           const height = el.offsetHeight;
           if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
+            setActiveSection(sectionId);
             break;
           }
         }
@@ -93,7 +144,10 @@ export default function App() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, [showWelcome]);
 
   const handleLinkClick = (id) => {

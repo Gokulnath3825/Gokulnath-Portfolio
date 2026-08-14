@@ -1,54 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function Skills({ skills }) {
-  const [expandedCard, setExpandedCard] = useState(null);
-  const [animate, setAnimate] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
-  useEffect(() => {
-    const timer = setTimeout(() => setAnimate(true), 200);
-    return () => clearTimeout(timer);
-  }, [skills]);
+  const categories = ['All', 'Languages', 'Frontend', 'Backend & DB', 'Fundamentals'];
 
-  const handleCardClick = (id) => {
-    setExpandedCard(expandedCard === id ? null : id);
-  };
+  const filteredSkills = skills ? skills.filter((skill) => {
+    if (selectedCategory === 'All') return true;
+    return skill.category === selectedCategory;
+  }) : [];
 
   return (
     <section id="skills" className="section">
-      <h2 className="section-title">Skills</h2>
-      <p className="section-subtitle">Click a card to reveal descriptions. Progress bars animate dynamically from the database.</p>
+      <h2 className="section-title">Technical Skills</h2>
+      <p className="section-subtitle">Core competencies and technologies I build with daily</p>
 
-      <div className="skills-grid">
-        {skills && skills.map((skill) => (
-          <div
-            key={skill.id}
-            className="skill-card"
-            onClick={() => handleCardClick(skill.id)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                handleCardClick(skill.id);
-              }
-            }}
+      {/* Category Tabs */}
+      <div className="skill-category-tabs">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            className={`tab-pill ${selectedCategory === cat ? 'active' : ''}`}
+            onClick={() => setSelectedCategory(cat)}
           >
-            <div className="skill-header">
-              <h3>{skill.name}</h3>
-              <span className="skill-pct">{skill.percentage}%</span>
-            </div>
-            
-            <div className="skill-bar">
-              <div
-                className="skill-progress"
-                style={{ width: animate ? `${skill.percentage}%` : '0%' }}
-              ></div>
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div className="skills-pill-grid">
+        {filteredSkills.map((skill) => (
+          <div key={skill.id} className="skill-pill-card">
+            <div className="skill-pill-top">
+              <div className="skill-pill-name">
+                <span className="skill-dot"></span>
+                <strong>{skill.name}</strong>
+              </div>
+              <span className="skill-pct-badge">{skill.percentage}%</span>
             </div>
 
-            {expandedCard === skill.id && (
-              <div className="skill-detail">
-                {skill.details}
-              </div>
-            )}
+            <div className="skill-mini-bar">
+              <div className="skill-mini-fill" style={{ width: `${skill.percentage}%` }}></div>
+            </div>
+
+            <p className="skill-pill-details">{skill.details}</p>
           </div>
         ))}
       </div>
