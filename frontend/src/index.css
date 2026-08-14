@@ -413,13 +413,98 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-cyan);
 }
 
-/* HERO SECTION */
-.hero-layout {
+/* HERO SECTION - FULL SCREEN 100VH */
+.hero-full-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 100px 0 40px 0;
+}
+
+.hero-container {
   display: grid;
   grid-template-columns: 1.25fr 0.85fr;
   gap: 50px;
   align-items: center;
-  min-height: calc(100vh - 120px);
+  width: 100%;
+}
+
+/* Staggered entrance animations */
+.entrance-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: entranceFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }
+.delay-4 { animation-delay: 0.55s; }
+.delay-5 { animation-delay: 0.7s; }
+.delay-6 { animation-delay: 0.85s; }
+.delay-7 { animation-delay: 1.0s; }
+
+@keyframes entranceFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-btn-primary, .hero-btn-ghost {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 10px 30px var(--glow-cyan);
+}
+
+.hero-btn-ghost:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
+}
+
+/* Bouncing scroll down arrow indicator */
+.scroll-down-indicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  text-decoration: none;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  animation: bounceIndicator 2.2s infinite ease-in-out;
+  transition: border-color 0.3s ease;
+  z-index: 10;
+}
+
+.scroll-down-indicator:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+@keyframes bounceIndicator {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
 }
 
 .hero-status-pill {
